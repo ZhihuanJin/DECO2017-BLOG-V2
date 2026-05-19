@@ -8,7 +8,6 @@ tags:
   - ideation
   - functional requirements
   - feasibility
-  - older adults
 ---
 
 At the beginning of this project, I interpreted the brief as asking for more than just “an app idea”. The main challenge is to identify what a specific community actually needs a web application to do, and then make design decisions around those needs. This means the early stage is not only about brainstorming features, but also about judging whether the idea has a clear purpose, a realistic scope, and enough difference from existing platforms.

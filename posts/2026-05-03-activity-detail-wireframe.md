@@ -1,54 +1,36 @@
 ---
-title: "Refining the Scope: Structuring a Neighbourhood Companionship Web App
-date: 2026-04-27
+title: Designing the Activity Detail Page as a Trust-Aware Participation Flow
+date: 2026-05-03
 author: Zhihuan Jin
-summary: "This post narrows the project from a broad community idea into a structured web application concept for adults aged 55 and above, using a simple sitemap to reason about scope, functionality, and feasibility."
+summary: Testing the core participation flow through an age-friendly activity detail wireframe and connecting interface decisions to data, trust, and technical requirements.
 tags:
-  - functional requirements
-  - sitemap
-  - scope
-  - older adults
-  - community connection
+  - wireframe
+  - user flow
+  - age-friendly design
+  - trust
+  - technical decisions
 ---
 
-After the first stage of ideation, our project direction has become more focused. Earlier ideas included a retro gaming community, an anime fan platform, and a USyd “treehole” style space for anonymous student expression. These ideas were interesting, but they also had clear limitations. The retro gaming and anime ideas already have many existing platforms, while the student treehole concept would depend heavily on moderation and could create difficult safety issues. For this reason, I decided that our A2 prototype needs a more specific community need and a clearer functional purpose.
+In the previous post, I narrowed the project from a general neighbourhood platform into an activity-first community connection service for adults aged 55 and above. This week, I wanted to test whether that idea could work at the screen level. Instead of designing the whole application at once, I focused on one critical screen: the Activity Detail page. This is where a user moves from browsing local opportunities to deciding whether they feel safe and confident enough to take part.
 
-The current direction is a neighbourhood-based companionship web application for adults aged 55 and above. It is partly inspired by Nextdoor’s local community logic, but it should not simply become another neighbourhood noticeboard. I also do not want to frame it as a dating app. Instead, the focus should be companionship, social connection, activity-first matching, guided introductions, and trust-aware local participation. The main design challenge is to help older adults find nearby people and activities in a way that feels safe, purposeful, and socially comfortable.
+![Activity Detail page wireframe showing community context, activity information, participation CTA, organiser trust indicators, and privacy note](../assets/activity-detail-wireframe-overview.png)
 
-To make the concept more concrete, I created a simple sitemap to reason about the possible structure of the web application:
+*Figure 1. Activity Detail wireframe v2. This screen tests how neighbourhood context, activity information, trust signals, and participation actions can work together.*
 
-```text
-Home / Landing
-│
-├── Choose Community
-│   ├── Use Approximate Location
-│   └── Enter Suburb / Postcode Manually
-│
-├── Community Dashboard
-│   ├── Local Activities
-│   │   ├── Activity Details
-│   │   ├── Join / Express Interest
-│   │   └── Create Activity
-│   │
-│   ├── Companions
-│   │   ├── Browse Profiles
-│   │   └── Request Guided Introduction
-│   │
-│   ├── Messages / Introductions
-│   └── Safety & Community Guidelines
-│
-└── User Profile
-    ├── Interests
-    ├── Availability
-    └── Trust / Contact Preferences
-```
+I chose this page because it carries several core functional requirements at the same time. The user needs to understand what the activity is, where it happens, whether it suits their mobility and comfort level, who is organising it, and what will happen if they express interest. If any of these are unclear, the platform may technically “work”, but it would not support the actual user need: low-pressure, trusted local social participation.
 
-This sitemap helped me separate essential functions from optional ones. The essential functions are choosing a local community, browsing local activities, viewing activity details, expressing interest in an activity, setting up a basic profile, and requesting a guided introduction. These features directly support the main purpose of the application: helping older adults move from local isolation toward low-pressure social participation.
+A key design decision was to keep the community context visible at the top of the page: “Riverside & Old Town — within 2 km of home”. This reinforces that the application is not a generic events platform. It is tied to a local area, which supports relevance and trust. I also included a clear “Change community” option because users should not feel trapped by an automatic location decision. This matters for accessibility and privacy: some users may prefer to manually choose a nearby community rather than share precise location data.
 
-Other possible features should remain outside the first prototype. For example, real-time chat, complex recommendation algorithms, detailed map browsing, full identity verification, and rating systems could all be useful in a future version. However, including them too early would increase technical complexity and may distract from the core interaction. A full open community feed could also make the platform feel too similar to existing social media or neighbourhood apps. For this prototype, a smaller set of meaningful interactions is more appropriate than a large set of loosely connected features.
+The wireframe also reflects a stronger age-friendly direction. I used simple text navigation rather than icon-only controls, large touch targets, clear hierarchy, and direct language. The activity description avoids vague promotional wording and instead gives practical information: duration, meeting point, benches, accessibility details, cost, and what to expect on the day. This is not only a visual design choice; it is a functional requirement. For this user group, confidence may depend on small but important details, such as whether the path is flat, whether breaks are normal, and whether staying for tea afterwards is optional.
 
-One important design decision is that activities should be the main entry point, not individual profiles. If the application begins with browsing people, it may feel too much like dating or profile-based social media. If it begins with activities, the interaction becomes more natural. Users connect because they both want to join a walking group, coffee meet-up, book discussion, gardening activity, or local event. This supports companionship without forcing direct personal matching too early.
+The right side of the page focuses on trust and participation. Instead of placing a generic “Join” button alone, the page shows places available, organiser information, verification signals, hosting history, and a privacy note. This helps balance two competing needs: the platform should encourage offline connection, but it should not pressure users into sharing personal details too quickly.
 
-There are still risks and unknowns. Location is useful for building a local community, but precise GPS tracking may create privacy concerns. Manual suburb or postcode entry may be safer and easier to prototype. Trust is also difficult to design: too little safety support may make users hesitant, but too much verification may feel intrusive. Accessibility is another key issue, since the interface needs clear navigation, readable text, simple forms, and predictable interactions.
+![Guided introduction wireframe showing structured response options for joining a local activity](../assets/guided-introduction-wireframe.png)
 
-My next step is to move from this sitemap into more specific user flows. In particular, I need to understand how a user would enter a community, join an activity, request an introduction, and manage their profile. This will help test whether the current scope is realistic for the A2 prototype and whether the planned features genuinely support the project’s social goal.
+*Figure 2. Guided introduction flow. The user can express interest through structured choices before anything is sent to the organiser.*
+
+The guided introduction section is the most important interaction decision in this version. I deliberately avoided an open-ended chat-first model because it creates a “blank message” problem. Some users may not know what to write, while others may overshare personal information too early. Instead, the interface offers structured options such as “It’s my first time”, “I’ve walked before”, “I’d like to bring a friend or neighbour”, and “I need a slower pace or a rest plan”. These options communicate useful needs to the organiser while reducing social awkwardness for the participant.
+
+This decision also connects to technical feasibility. A full chat system would require more complex moderation, message storage, and safety controls. A guided introduction flow is more achievable within the prototype because it can be modelled as structured form data linked to a user, an activity, and a participation request. Technically, this fits well with a server-rendered HTML approach, a SQLite database, and small HTMX-style interactions such as previewing or submitting an interest request without building a complex single-page application.
+
+This wireframe also reveals the next data questions. The page is not just visual content; it implies entities such as User, Community, Activity, Organiser, Group, ParticipationRequest, and TrustSignal. In the next stage, I need to move from the interface view to the data view by writing a DDD and sketching an ERD. This should help test whether the activity-first concept is not only desirable for users, but also structurally realistic to build.
